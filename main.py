@@ -42,7 +42,7 @@ class Console():
             try:
                 line = raw_input(self.prompt)
             except EOFError:
-                stdout.write("\r# quit\n")
+                stdout.write(''.join(["\r", self.prompt, "quit\n"]))
                 stdout.flush()
                 self._quit()
             except KeyboardInterrupt:
@@ -81,7 +81,7 @@ class Console():
 # this is an example of a two-command implementation of Console
 class TestShell(Console):
     def __init__(self):
-        Console.__init__(self, commands = ["echo", "add"])
+        Console.__init__(self, prompt = "<3<3<3", commands = ["echo", "add"])
 
     def add(self, a, b):
         ans = int(a) + int(b)
