@@ -13,6 +13,7 @@ class Console():
         self.ignore_list = filter(lambda a: a not in commands, ignore_list)
         self.options = sorted(commands)
         self.prompt = prompt + ' '
+        self.running = True
 
     class Completer():
         def __init__(self, keywords):
@@ -38,13 +39,14 @@ class Console():
         readline.parse_and_bind('tab: complete')
         readline.set_completer(self.Completer(self.options).complete)
         self.usage()
-        while True:
+        while self.running:
             try:
                 line = raw_input(self.prompt)
             except EOFError:
                 stdout.write(''.join(["\r", self.prompt, "quit\n"]))
                 stdout.flush()
                 self._quit()
+                continue
             except KeyboardInterrupt:
                 stdout.write("\n")
                 stdout.flush()
@@ -68,7 +70,7 @@ class Console():
 
     def _quit(self):
         print "Pip-pip, old chap!"
-        quit()
+        self.running = False
 
     def help(self):
         print "The following commands are supported:"
