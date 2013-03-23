@@ -56,6 +56,7 @@ class Console():
             if len(line) > 0 and line[0] not in self.ignore_list:
                 if line[0] == "quit":
                     self._quit()
+                    continue
                 try:
                     m = getattr(self, line[0])
                     m(*line[1:])
