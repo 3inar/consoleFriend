@@ -51,6 +51,11 @@ class Console():
                 stdout.write("\n")
                 stdout.flush()
                 continue
+            except Exception as e:
+                from traceback import print_exc
+                print_exc()
+                self._quit()
+                continue
 
             line = line.split()
             if len(line) > 0 and line[0] not in self.ignore_list:
