@@ -71,8 +71,6 @@ class Console():
                 except TypeError as e:
                     print "Type error:"
                     print e
-            else:
-                self.usage()
 
     def _quit(self):
         print "Pip-pip, old chap!"
